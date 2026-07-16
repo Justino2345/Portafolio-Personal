@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO (title y description los actualiza el toggle de idioma en runtime) -->
+    <title>Justino Santos — Desarrollador Web Frontend / React</title>
+    <meta
+      name="description"
+      content="Desarrollador web frontend especializado en React, Tailwind y Framer Motion. Construyo interfaces a medida, precisas y con carácter."
+    />
+    <meta name="author" content="Justino Santos" />
+    <meta
+      name="keywords"
+      content="Justino Santos, desarrollador frontend, desarrollador web, React, Tailwind, Framer Motion, Armstrong, Santa Fe, Argentina, portfolio, interfaces, UX"
+    />
+    <meta name="theme-color" content="#0A0B0D" />
+
+    <!-- Favicon: monograma JS (SVG inline, sin archivo externo) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%230A0B0D'/%3E%3Ctext%20x='16'%20y='22'%20font-family='monospace'%20font-size='16'%20font-weight='700'%20text-anchor='middle'%20fill='%23C8FF3D'%3EJS%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- Open Graph / Twitter — reemplazá TU-DOMINIO.com por tu dominio real al deployar -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Justino Santos" />
+    <meta property="og:title" content="Justino Santos — Desarrollador Web Frontend / React" />
+    <meta
+      property="og:description"
+      content="Desarrollador web frontend especializado en React, Tailwind y Framer Motion. Construyo interfaces a medida, precisas y con carácter."
+    />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://TU-DOMINIO.com/" />
+    <meta property="og:image" content="https://TU-DOMINIO.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Justino Santos — Desarrollador Web Frontend / React" />
+    <meta
+      name="twitter:description"
+      content="Desarrollador web frontend especializado en React, Tailwind y Framer Motion."
+    />
+    <meta name="twitter:image" content="https://TU-DOMINIO.com/og-image.png" />
+    <link rel="canonical" href="https://TU-DOMINIO.com/" />
+
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme')
+          if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+          document.documentElement.setAttribute('data-theme', t)
+          var l = localStorage.getItem('lang')
+          if (l === 'es' || l === 'en') document.documentElement.lang = l
+        } catch (e) {}
+      })()
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

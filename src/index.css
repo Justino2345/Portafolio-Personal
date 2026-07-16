@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0b0d;
+  --surface: #101216;
+  --surface-alt: #16191f;
+  --surface-elevated: #1b1f26;
+  --text-primary: #f2f4f5;
+  --text-secondary: #9ca3ab;
+  --text-muted: #5a616b;
+  --accent: #c8ff3d;
+  --accent-dim: #9bcc2e;
+  --accent-alt: #7dd3fc;
+  --amber: #f5b041;
+  --border: #23272e;
+  --border-hover: #3a4049;
+  --grid-line: rgba(35, 39, 46, 0.55);
+  --grid-line-lit: rgba(200, 255, 61, 0.1);
+  --accent-glow: rgba(200, 255, 61, 0.16);
+  --scanline: rgba(200, 255, 61, 0.05);
+  --scrim: rgba(10, 11, 13, 0.72);
+  --vignette: rgba(0, 0, 0, 0.55);
+  /* Numeral fantasma de Proceso: contorno + opacidad del relleno acento. */
+  --ghost-stroke: var(--border-hover);
+  --ghost-fill-opacity: 0.9;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f6f6f1;
+  --surface: #ffffff;
+  --surface-alt: #eeeee8;
+  --surface-elevated: #ffffff;
+  --text-primary: #16181c;
+  --text-secondary: #54585f;
+  --text-muted: #898e96;
+  --accent: #4d7c0f;
+  --accent-dim: #3f6212;
+  --accent-alt: #0e7490;
+  --amber: #b45309;
+  --border: #e3e3db;
+  --border-hover: #c9c9bf;
+  --grid-line: rgba(20, 22, 26, 0.07);
+  --grid-line-lit: rgba(77, 124, 15, 0.14);
+  --accent-glow: rgba(77, 124, 15, 0.18);
+  --scanline: rgba(77, 124, 15, 0.06);
+  --scrim: rgba(246, 246, 241, 0.8);
+  --vignette: rgba(20, 22, 26, 0.05);
+  /* En claro el oliva pesa: bajamos el relleno y firmamos el contorno para
+     que el numeral lea como marca de agua etérea, no como bloque macizo. */
+  --ghost-stroke: #b4b4a7;
+  --ghost-fill-opacity: 0.42;
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    /* framer-motion useScroll usa <html> como scroll container por defecto y
+       exige position no estática para medir offsets del target. */
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .mono-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+  }
+
+  .mono-micro {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom cursor: hide native cursor only when active on fine pointers */
+@media (pointer: fine) {
+  body.custom-cursor,
+  body.custom-cursor * {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
