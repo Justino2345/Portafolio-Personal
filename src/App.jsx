@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <>
-      <GridBackground mouse={mouse} reduced={reduced} />
+      <GridBackground mouse={mouse} reduced={reduced} spotlight={!isTouch} />
       {!isTouch && !reduced && <CustomCursor mouse={mouse} />}
 
       <AnimatePresence>

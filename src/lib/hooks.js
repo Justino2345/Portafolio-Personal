@@ -2,12 +2,19 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useMotionValue } from 'framer-motion'
 import Lenis from 'lenis'
 
+// En táctil no hay puntero que seguir, pero el arrastre del scroll SÍ emite
+// pointermove: sin este guard, cada gesto dispara trabajo por frame
+// (re-renders / escrituras de MotionValue) sin ningún efecto visible.
+const isCoarsePointer = () =>
+  typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 // Posición del puntero como MotionValues (para cursor, spotlight, etc).
 // Throttle con requestAnimationFrame.
 export function useMouseMotion() {
   const x = useMotionValue(-200)
   const y = useMotionValue(-200)
   useEffect(() => {
+    if (isCoarsePointer()) return undefined
     let raf = 0
     const onMove = (e) => {
       cancelAnimationFrame(raf)
@@ -29,6 +36,7 @@ export function useMouseMotion() {
 export function useMouseCoords() {
   const [coords, setCoords] = useState({ x: 0, y: 0 })
   useEffect(() => {
+    if (isCoarsePointer()) return undefined
     let raf = 0
     const onMove = (e) => {
       cancelAnimationFrame(raf)

@@ -1,6 +1,7 @@
 import Motif from './Motifs.jsx'
 import ProjectPreview from './ProjectPreview.jsx'
 import { useI18n } from '../i18n/i18n.jsx'
+import { useIsTouch } from '../lib/hooks.js'
 
 const Corner = ({ glyph, pos }) => (
   <span className={`mono-micro absolute z-10 text-muted ${pos}`}>{glyph}</span>
@@ -8,9 +9,12 @@ const Corner = ({ glyph, pos }) => (
 
 export default function ProjectPlate({ project, reduced }) {
   const { t, L } = useI18n()
+  const isTouch = useIsTouch()
   const title = L(project.title)
   const caption = L(project.caption)
-  const hasPreview = !!project.previewUrl
+  // En táctil el iframe escalado (sitio completo a 1280px) fuerza
+  // re-rasterizados continuos durante el scroll: usamos la textura generativa.
+  const hasPreview = !!project.previewUrl && !isTouch
   const demo = project.links?.demo && project.links.demo !== '#' ? project.links.demo : null
   const Wrapper = demo ? 'a' : 'div'
   const wrapperProps = demo

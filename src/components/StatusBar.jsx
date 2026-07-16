@@ -24,7 +24,7 @@ export default function StatusBar() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-line backdrop-blur-sm"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-line sm:backdrop-blur-sm"
       style={{ background: 'var(--scrim)' }}
     >
       <div className="mono-micro mx-auto flex max-w-content items-center justify-between px-5 py-2">

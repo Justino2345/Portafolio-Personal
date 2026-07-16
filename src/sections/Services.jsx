@@ -177,7 +177,10 @@ export default function Services() {
   const frameRef = useRef(null)
   const rowRefs = useRef([])
   const controlsRef = useRef(null)
-  const inView = useInView(frameRef, { amount: 0.25 })
+  // `amount: 'some'`: en móvil el marco apilado mide 2-3 viewports; un umbral
+  // de 0.25 nunca se alcanza de forma estable y el ciclo auto se congela.
+  const inView = useInView(frameRef, { amount: 'some' })
+  const inViewRef = useRef(false)
 
   // Un solo motion value gobierna la línea de progreso y el llenado del numeral.
   const dwell = useMotionValue(0)
@@ -189,13 +192,17 @@ export default function Services() {
     if (reduced) setMode('manual')
   }, [reduced])
 
+  // Arranca una pasada del gauge por etapa/modo. La visibilidad NO está en las
+  // deps a propósito: en móvil la barra de URL redimensiona el viewport al
+  // scrollear y hace "aletear" al IntersectionObserver; si cada toggle
+  // reiniciara el efecto, dwell volvería a 0 una y otra vez y el modo auto
+  // jamás completaría sus 5.2s (el bug). Visibilidad = pausa/reanuda, no reset.
   useEffect(() => {
     if (reduced) {
       dwell.set(1)
       return undefined
     }
     dwell.set(0)
-    if (mode === 'auto' && !inView) return undefined
     const controls =
       mode === 'auto'
         ? animate(dwell, 1, {
@@ -204,12 +211,21 @@ export default function Services() {
             onComplete: () => setActive((a) => (a + 1) % steps.length),
           })
         : animate(dwell, 1, { duration: 0.9, ease: ease.out })
+    if (mode === 'auto' && !inViewRef.current) controls.pause()
     controlsRef.current = controls
     return () => {
       controlsRef.current = null
       controls.stop()
     }
-  }, [active, mode, inView, reduced, steps.length, dwell])
+  }, [active, mode, reduced, steps.length, dwell])
+
+  // Pausa/reanuda el reloj auto según visibilidad, preservando el progreso.
+  useEffect(() => {
+    inViewRef.current = inView
+    if (reduced || mode !== 'auto') return
+    if (inView) controlsRef.current?.play()
+    else controlsRef.current?.pause()
+  }, [inView, mode, reduced])
 
   const select = (i) => {
     setMode('manual')
@@ -221,7 +237,7 @@ export default function Services() {
     if (mode === 'auto') controlsRef.current?.pause()
   }
   const resumeAuto = () => {
-    if (mode === 'auto') controlsRef.current?.play()
+    if (mode === 'auto' && inViewRef.current) controlsRef.current?.play()
   }
   const onFrameBlur = (e) => {
     if (!e.currentTarget.contains(e.relatedTarget)) resumeAuto()

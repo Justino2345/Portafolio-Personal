@@ -118,6 +118,19 @@
   }
 }
 
+/* Capa fija a viewport completo con altura ESTABLE en móvil: `inset: 0` ata el
+   bottom al viewport visual, que cambia de altura cada frame mientras la barra
+   de URL se colapsa/expande al scrollear => repintado constante (parpadeo).
+   100lvh (viewport grande) no varía; 100vh queda como fallback. */
+.viewport-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+}
+
 /* Lenis smooth scroll */
 html.lenis,
 html.lenis body {

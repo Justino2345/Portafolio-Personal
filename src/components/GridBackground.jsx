@@ -13,13 +13,15 @@ const litGrid = {
 }
 
 // Capa fija de grilla modular + spotlight que sigue al puntero.
-export default function GridBackground({ mouse, reduced }) {
+// `spotlight=false` (táctil) evita componer una capa enmascarada a pantalla
+// completa que en móvil nunca se ve (no hay puntero que la ilumine).
+export default function GridBackground({ mouse, reduced, spotlight = true }) {
   const mask = useMotionTemplate`radial-gradient(240px circle at ${mouse.x}px ${mouse.y}px, #000 0%, transparent 70%)`
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10" style={{ background: 'var(--bg)' }}>
+    <div aria-hidden className="viewport-fixed pointer-events-none -z-10" style={{ background: 'var(--bg)' }}>
       <div className="absolute inset-0" style={baseGrid} />
-      {!reduced && (
+      {!reduced && spotlight && (
         <motion.div
           className="absolute inset-0"
           style={{ ...litGrid, maskImage: mask, WebkitMaskImage: mask }}
