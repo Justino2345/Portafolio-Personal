@@ -129,6 +129,12 @@
   width: 100%;
   height: 100vh;
   height: 100lvh;
+  /* Promueve la capa a su propio layer compuesto. Un fixed con z-index
+     negativo detrás del contenido scrolleable es un caso degenerado clásico
+     en Chrome Android / Safari iOS: sin esto, el compositor repinta la página
+     entera en cada frame de scroll (parpadeo/titileo global en móvil). */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Lenis smooth scroll */
