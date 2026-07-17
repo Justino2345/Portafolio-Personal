@@ -27,4 +27,24 @@ export const projects = [
     repo: '',
     links: { demo: 'https://lafabricadecontenido.vercel.app/', code: 'https://github.com/justinosantosutn/LaFabricaDeContenido.' },
   },
+ {
+    id: 'indio-mates',
+    index: '02',
+    title: 'Indio Mates', // nombre propio: igual en ambos idiomas
+    desc: {
+      es: 'Sitio web para una empresa de venta de mates, con gestión propia de productos, manejo de carrito de compras y soporte personalizado.',
+      en: 'Website for a company selling mates, with own product management, shopping cart handling and personalized support.',
+    },
+    type: { es: 'Ecommerce/Funcional', en: 'Ecommerce/Functional' },
+    tags: ['React', 'PostgreSQL', 'Next.js'],
+    year: '2026',
+    status: 'in progress',
+    motif: 'dots',
+    caption: 'indio mates',
+    previewUrl: 'https://indiomates.vercel.app/',
+  
+    repo: '',
+    links: { demo: 'https://indiomates.vercel.app/', code: 'https://github.com/indiomates-cpu/IndioMatesPagina.' },
+  }
 ]
+  
