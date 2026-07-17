@@ -44,7 +44,7 @@ export const projects = [
     previewUrl: 'https://indiomates.vercel.app/',
   
     repo: '',
-    links: { demo: 'https://indiomates.vercel.app/', code: 'https://github.com/indiomates-cpu/IndioMatesPagina.' },
+    links: { demo: 'https://indiomates.vercel.app/', code: 'https://github.com/indiomates-cpu/IndioMatesPagina' },
   }
 ]
   
