@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { AnimatePresence, useReducedMotion } from 'framer-motion'
-import { useMouseMotion, useIsTouch, useLenis } from './lib/hooks.js'
+import { AnimatePresence } from 'framer-motion'
+import { useMouseMotion, useIsTouch, useLenis, useSiteReducedMotion } from './lib/hooks.js'
 import GridBackground from './components/GridBackground.jsx'
 import CustomCursor from './components/CustomCursor.jsx'
 import LoadingScreen from './components/LoadingScreen.jsx'
@@ -13,7 +13,7 @@ import Services from './sections/Services.jsx'
 import Contact from './sections/Contact.jsx'
 
 export default function App() {
-  const reduced = !!useReducedMotion()
+  const reduced = useSiteReducedMotion()
   const isTouch = useIsTouch()
   const mouse = useMouseMotion()
   const scrollTo = useLenis(!reduced)

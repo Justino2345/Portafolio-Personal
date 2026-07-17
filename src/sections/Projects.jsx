@@ -37,7 +37,7 @@ export default function Projects({ reduced }) {
         variants={revealUp}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="mt-8 flex flex-col items-center justify-center rounded-xl border border-dashed border-line px-6 py-14 text-center"
       >
         <span className="mono-micro text-muted">{t('projects.soon.tag')}</span>

@@ -38,7 +38,7 @@ export default function About() {
           variants={revealUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15 }}
         >
           <Portrait />
         </motion.div>
@@ -47,7 +47,7 @@ export default function About() {
           variants={revealUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15 }}
           custom={1}
         >
           <h3

@@ -76,6 +76,16 @@ function formatTime(d) {
   return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`
 }
 
+// Política del sitio sobre prefers-reduced-motion: IGNORARLA (decisión de
+// diseño del dueño, 2026-07): en Android el ahorro de batería activa esa
+// preferencia y dejaba el sitio 100% estático (marquee quieto, modo auto
+// deshabilitado) para una gran parte de los visitantes móviles.
+// Para volver a respetarla: devolver `!!useReducedMotion()` de framer-motion
+// y restaurar el bloque @media (prefers-reduced-motion) en index.css.
+export function useSiteReducedMotion() {
+  return false
+}
+
 // Lenis smooth scroll. Devuelve scrollTo(target). Se desactiva con `enabled=false`.
 export function useLenis(enabled = true) {
   const lenisRef = useRef(null)

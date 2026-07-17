@@ -49,7 +49,7 @@ export default function ProjectRow({ project, i, reduced }) {
       variants={clipRevealUp}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.12 }}
       custom={i}
       className="group grid grid-cols-1 gap-8 border-t border-line py-12 md:grid-cols-[1fr_minmax(0,46%)] md:items-center"
     >

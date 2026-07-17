@@ -5,13 +5,12 @@ import {
   motion,
   useInView,
   useMotionValue,
-  useReducedMotion,
   useTransform,
 } from 'framer-motion'
 import { ease, revealUp, spring } from '../lib/motion.js'
 import { services } from '../data/services.js'
 import { useI18n } from '../i18n/i18n.jsx'
-import { useIsTouch } from '../lib/hooks.js'
+import { useIsTouch, useSiteReducedMotion } from '../lib/hooks.js'
 
 // Segundos que el modo auto muestra cada etapa antes de avanzar.
 const DWELL = 5.2
@@ -168,7 +167,7 @@ export default function Services() {
   const { t, lang } = useI18n()
   const s = services[lang] || services.es
   const { steps, ui } = s
-  const reduced = !!useReducedMotion()
+  const reduced = useSiteReducedMotion()
   const isTouch = useIsTouch()
 
   const [active, setActive] = useState(0)
@@ -325,7 +324,7 @@ export default function Services() {
               className="mt-2"
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {steps.map((st, i) => (
                 <motion.button

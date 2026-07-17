@@ -29,7 +29,7 @@ export default function Contact({ nav, reduced }) {
           variants={clipRevealUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.15 }}
           className="mt-10 font-display font-bold text-primary"
           style={{ fontSize: 'clamp(3rem, 11vw, 9rem)', lineHeight: 0.95, letterSpacing: '-0.04em' }}
         >
